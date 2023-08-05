@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cubo 3D Habilidades</title>
+
+        <style>
+            :root {
+                --x: 0deg;
+                --y: 0deg;
+                --z: 0deg;
+            }
+
+            :root:has([name="skill"][id="html"]:checked) {
+                --y: -0deg;
+                --x: 0deg;
+            }
+            :root:has([name="skill"][id="css"]:checked) {
+                --y: -90deg;
+                --x: 0deg;
+            }
+            :root:has([name="skill"][id="python"]:checked) {
+                --y: -270deg;
+                --x: 0deg;
+            }
+            :root:has([name="skill"][id="unity"]:checked) {
+                --y: -180deg;
+            }
+            :root:has([name="skill"][id="js"]:checked) {
+                --x: -90deg;
+                --y: 0deg;
+            }
+            :root:has([name="skill"][id="gm"]:checked) {
+                --x: 90deg;
+                --y: 0deg;
+            }
+
+            input[type="radio"] {
+                position: absolute;
+                top: -500px;
+            }
+
+            .btn {
+                cursor: pointer;
+                background-color: #ccc;
+                color: white;
+                font-size: 1rem;
+                font-family: bahnschrift;
+                font-weight: 600;
+                padding: 16px;
+                border-radius: 10px;
+                text-transform: uppercase;
+            }
+            .btnHtml {
+                background-color: orange;
+            }
+            .btnCss {
+                background-color: rgb(11, 136, 253);
+            }
+            .btnUnity {
+                background-color: black;
+            }
+            .btnPython {
+                background-image: linear-gradient(90deg, forestgreen, gold);
+            }
+            .btnJs {
+                background-color: gold;
+            }
+            .btnGm {
+                background-color: forestgreen;
+            }
+
+            .no-js {
+                display: none;
+            }
+
+            body {
+                margin: 0;
+                background-color: #333;
+            }
+
+            .teste {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                gap: 3rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                font-family: sans-serif;
+            }
+
+            .cena {
+                width: 300px;
+                height: 300px;
+                perspective: 600px;
+            }
+            /* .cena:hover {
+                cursor: grab;
+            } */
+
+            .cubo {
+                width: 100%;
+                height: 100%;
+                transform-style: preserve-3d;
+                position: relative;
+                transform: translateZ(-150px) rotateY(var(--y)) rotateX(var(--x)) rotateZ(var(--z));
+                transition: transform 1s ease-in-out;
+            }
+
+            .face,
+            .face_locked {
+                outline: 3px solid black;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 80px;
+                position: absolute;
+                background-image: radial-gradient(ellipse at center, rgb(66, 57, 189), rgb(12, 12, 34));
+                transition: box-shadow 0.5s ease-in-out;
+                user-select: none;
+            }
+            .face_locked {
+                background-color: rgb(204 204 204 / 0.7);
+                background-image: url(lock.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90px 90px;
+                font-size: 50px;
+            }
+            .face img {
+                width: 50%;
+            }
+            .face {
+                box-shadow: 0px 0px 60px rgb(0 0 0 / 0.7);
+            }
+
+            .face_1 {
+                transform: translateZ(150px) rotateY(0deg);
+                /* box-shadow: 0px 0px 200px 10px orangered; */
+            }
+            .face_2 {
+                transform: translateX(150px) rotateY(90deg);
+            }
+            .face_3 {
+                transform: translateX(-150px) rotatey(-90deg);
+            }
+            .face_4 {
+                transform: translateZ(-150px);
+            }
+            .face_5 {
+                transform: translateY(-150px) rotateX(90deg);
+            }
+            .face_6 {
+                transform: translateY(150px) rotateX(-90deg);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="teste">
+            <div class="controls">
+                <div class="controls_skill">
+                    <input type="radio" name="skill" id="html" />
+                    <input type="radio" name="skill" id="css" />
+                    <input type="radio" name="skill" id="unity" />
+                    <input type="radio" name="skill" id="python" />
+                    <input type="radio" name="skill" id="js" />
+                    <input type="radio" name="skill" id="gm" />
+
+                    <label for="html" class="btn btnHtml">html</label>
+                    <label for="css" class="btn btnCss">css</label>
+                    <label for="unity" class="btn btnUnity">unity</label>
+                    <label for="python" class="btn btnPython">python</label>
+                    <label for="js" class="btn btnJs">js</label>
+                    <label for="gm" class="btn btnGm">gm</label>
+                </div>
+            </div>
+
+            <div class="cena">
+                <div class="cubo">
+                    <div class="face face_1">
+                        <div></div>
+                        <img src="html-5.png" alt="" />
+                    </div>
+                    <div class="face face_2">
+                        <div></div>
+                        <img src="css-3.png" alt="" />
+                    </div>
+                    <div class="face face_3">
+                        <div class="face_locked"></div>
+                        <img src="python.png" alt="" />
+                    </div>
+                    <div class="face face_4">
+                        <div></div>
+                        <img src="unity.png" alt="" />
+                    </div>
+                    <div class="face face_5">
+                        <div></div>
+                        <img src="javascript.png" alt="" />
+                    </div>
+                    <div class="face face_6">
+                        <div></div>
+                        <img src="icons8-game-maker-512.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            (() => {
+                document.querySelector(".controls").classList.add("no-js");
+                const $root = document.querySelector(":root");
+
+                // var rotateYX = (e) => {
+                //     $root.style.setProperty("--y", `${e.pageX * 0.5}deg`);
+                //     $root.style.setProperty("--x", `${e.pageY * -0.5}deg`);
+                // };
+
+                var addX = 0;
+                var addY = 0;
+
+                rotateYX = (e) => {
+                    if (e.clientX > rotateYX.previousX) {
+                        addX += 5;
+                        $root.style.setProperty("--y", `${addX}deg`);
+                    } else if (e.clientX < rotateYX.previousX) {
+                        addX -= 5;
+                        $root.style.setProperty("--y", `${addX}deg`);
+                    }
+
+                    if (e.clientY > rotateYX.previousY) {
+                        addY -= 5;
+                        $root.style.setProperty("--x", `${addY}deg`);
+                    } else if (e.clientY < rotateYX.previousY) {
+                        addY += 5;
+                        $root.style.setProperty("--x", `${addY}deg`);
+                    }
+
+                    rotateYX.previousX = e.clientX;
+                    rotateYX.previousY = e.clientY;
+                };
+
+                var intervalo;
+                var segurandoClickMouse = false;
+                var qualTipoDispositivo = "";
+
+                var evento = {
+                    mouse: {
+                        down: "mousedown",
+                        up: "mouseup",
+                        move: "mousemove",
+                    },
+                    touch: {
+                        down: "pointerdown",
+                        up: "pointerup",
+                        move: "pointermove",
+                    },
+                };
+
+                const dispositivoTouch = () => {
+                    try {
+                        document.createEvent("TouchEvent"); //se criar um evento de touch
+                        qualTipoDispositivo = "touch"; //recebendo dispositivo tipo touch
+                        // return true;
+                    } catch (e) {
+                        //se não criar um evento de touch
+                        qualTipoDispositivo = "mouse"; //recebendo dispositivo tipo mouse
+                        // return false;
+                    }
+                };
+                dispositivoTouch();
+
+                $root.addEventListener(evento[qualTipoDispositivo].down, () => {
+                    segurandoClickMouse = true;
+                    console.log(segurandoClickMouse);
+                    intervalo = setTimeout(() => {
+                        if (segurandoClickMouse) {
+                            $root.addEventListener(evento[qualTipoDispositivo].move, rotateYX);
+                        }
+                    }, 50);
+                });
+
+                $root.addEventListener(evento[qualTipoDispositivo].up, () => {
+                    clearTimeout(intervalo);
+                    $root.removeEventListener(evento[qualTipoDispositivo].move, rotateYX);
+                    $root.style.setProperty("--y", `0deg`);
+                    $root.style.setProperty("--x", `0deg`);
+
+                    segurandoClickMouse = false;
+                    console.log(segurandoClickMouse);
+                });
+            })();
+        </script>
+    </body>
+</html>
